@@ -1,0 +1,42 @@
+@import "../../styles/colours.scss";
+
+// BUTTON
+button {
+  min-width: 120px;
+  height: 50px;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: translate(2px, 2px);
+}
+
+.solid,
+.transition:hover {
+  background: $btn-background;
+  border: 0px;
+  color: $btn-text;
+}
+
+.outline {
+  background: transparent;
+  border-color: $green;
+  border-style: solid;
+  border-width: 1px;
+  color: $btn-text-outline;
+}
+
+.arrow {
+  float: left;
+  padding-left: 14px;
+}
+
+.left {
+  transform: rotate(180deg) translateX(-50%);
+}

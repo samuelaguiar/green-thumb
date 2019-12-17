@@ -1,0 +1,9 @@
+@import "../../styles/colours.scss";
+
+.card {
+  background: $card-background;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  align-items: center;
+}

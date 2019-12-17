@@ -1,0 +1,41 @@
+@import "../../styles/colours.scss";
+
+.card-plant {
+  max-width: 208px;
+  min-height: 302px;
+  padding: 20px 30px;
+  justify-content: space-evenly;
+  font-weight: 300;
+  font-size: 18px;
+  transition: all 150ms ease;
+
+  .plant-pic {
+    max-height: 170px;
+  }
+
+  h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: $card-title;
+    align-self: flex-start;
+  }
+
+  .line {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .options {
+      display: flex;
+
+      .option:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.card-plant:hover {
+  box-shadow: 0px 28px 38px $grey-shadow;
+}

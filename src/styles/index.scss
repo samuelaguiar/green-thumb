@@ -1,0 +1,42 @@
+@import "./colours.scss";
+
+body {
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  margin: 0;
+  // font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  .logo-bar {
+    // background-color: red;
+    width: 3px;
+    height: 80%;
+    position: absolute;
+    left: 80px;
+    top: 10%;
+
+    .green-line {
+      background: $logo-bar;
+      width: 1px;
+      height: calc(100% - 208px - 40px);
+      transform: translate(12px, 40px);
+    }
+  }
+
+  .container-inside {
+    max-width: 900px;
+    width: 100%;
+    min-height: 100%;
+    margin: 5% 0;
+  }
+}
+
+.background-grey {
+  background: $grey-background;
+}
