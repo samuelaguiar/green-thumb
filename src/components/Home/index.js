@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo/logo-greenthumb.svg";
 import React from "react";
 
-const Home = () => {
+const Home = ({ startApp }) => {
   return (
     <div className="container background-grey container-home">
       <div className="container-inside-home">
@@ -19,6 +19,7 @@ const Home = () => {
             arrow
             width={"170px"}
             weight={"600"}
+            clickHandler={startApp}
           ></Button>
         </Link>
       </div>

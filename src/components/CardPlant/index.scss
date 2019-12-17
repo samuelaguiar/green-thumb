@@ -2,12 +2,14 @@
 
 .card-plant {
   max-width: 208px;
+  width: 100%;
   min-height: 302px;
   padding: 20px 30px;
   justify-content: space-evenly;
   font-weight: 300;
   font-size: 18px;
   transition: all 150ms ease;
+  margin-bottom: 53px;
 
   .plant-pic {
     max-height: 170px;
@@ -29,6 +31,11 @@
     .options {
       display: flex;
 
+      svg {
+        max-height: 23px;
+        width: auto;
+      }
+
       .option:not(:last-child) {
         margin-right: 10px;
       }
@@ -38,4 +45,5 @@
 
 .card-plant:hover {
   box-shadow: 0px 28px 38px $grey-shadow;
+  z-index: 1;
 }

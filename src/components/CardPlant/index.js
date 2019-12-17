@@ -2,9 +2,10 @@ import "./index.scss";
 
 import Button from "../Button";
 import CardContainer from "../CardContainer";
+import { Link } from "react-router-dom";
 import React from "react";
 
-const CardPlant = ({ src, name, price, options }) => {
+const CardPlant = ({ id, src, name, price, options, fetchPlant }) => {
   return (
     <CardContainer classes={`card-plant`}>
       <img src={src} className="plant-pic" alt={name}></img>
@@ -19,7 +20,16 @@ const CardPlant = ({ src, name, price, options }) => {
           ))}
         </div>
       </div>
-      <Button label={"buy now"} outline transition width={"100%"}></Button>
+      <Link to="/Purchase">
+        <Button
+          label={"buy now"}
+          outline
+          transition
+          width={"100%"}
+          clickHandler={fetchPlant}
+          plantId={id}
+        ></Button>
+      </Link>
     </CardContainer>
   );
 };

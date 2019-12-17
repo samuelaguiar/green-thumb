@@ -18,6 +18,16 @@ class Button extends Component {
     this.setState({ hover: false });
   };
 
+  clickAux = () => {
+    const { clickHandler, errorStatus, errorText, plantId } = this.props;
+
+    errorStatus
+      ? clickHandler(errorStatus, errorText)
+      : plantId
+      ? clickHandler(plantId)
+      : clickHandler();
+  };
+
   render() {
     const {
       label,
@@ -26,9 +36,7 @@ class Button extends Component {
       transition,
       width,
       weight,
-      clickHandler,
-      errorStatus,
-      errorText
+      clickHandler
     } = this.props;
     return (
       <button
@@ -38,9 +46,7 @@ class Button extends Component {
         style={{ width: width ? width : "", fontWeight: weight ? weight : "" }}
         onMouseEnter={this.setHover}
         onMouseLeave={this.unsetHover}
-        onClick={() =>
-          clickHandler ? clickHandler(errorStatus, errorText) : null
-        }
+        onClick={() => (clickHandler ? this.clickAux() : null)}
       >
         {arrow ? (
           !outline || this.state.hover ? (

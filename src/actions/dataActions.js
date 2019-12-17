@@ -1,18 +1,18 @@
 import {
-  GET_PLANT,
-  GET_PLANTS,
+  FETCH_PLANT,
+  FETCH_PLANTS,
   PLANTS_RECIEVED,
   PLANT_RECIEVED,
   POST_CONTACT
 } from "../constants/data";
 
-export const getPlant = id => ({
-  type: GET_PLANT,
+export const fetchPlant = id => ({
+  type: FETCH_PLANT,
   payload: { id }
 });
 
-export const getPlants = (sunlight, water, pets) => ({
-  type: GET_PLANTS,
+export const fetchPlants = (sunlight, water, pets) => ({
+  type: FETCH_PLANTS,
   payload: { sunlight, water, pets }
 });
 

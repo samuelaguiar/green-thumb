@@ -89,7 +89,8 @@ const getFilterContainer = (
   setSunlight,
   setWater,
   setPets,
-  updateError
+  updateError,
+  fetchPlants
 ) => {
   switch (path) {
     case SUNLIGHT:
@@ -107,13 +108,13 @@ const getFilterContainer = (
           btns={[
             {
               label: "home",
-              clickHandler: updateError,
+              clickHandler: error.status ? updateError : null,
               errorStatus: false,
               pathTo: "/"
             },
             {
               label: "next",
-              clickHandler: updateError,
+              clickHandler: sunlight.length > 0 ? null : updateError,
               errorStatus: sunlight.length > 0 ? false : true,
               pathTo: sunlight.length > 0 ? "/Filter/Water" : "#"
             }
@@ -137,13 +138,13 @@ const getFilterContainer = (
           btns={[
             {
               label: "previous",
-              clickHandler: updateError,
+              clickHandler: error.status ? updateError : null,
               errorStatus: false,
               pathTo: "/Filter/Sunlight"
             },
             {
               label: "next",
-              clickHandler: updateError,
+              clickHandler: water.length > 0 ? null : updateError,
               errorStatus: water.length > 0 ? false : true,
               pathTo: water.length > 0 ? "/Filter/Pets" : "#"
             }
@@ -173,15 +174,15 @@ const getFilterContainer = (
           btns={[
             {
               label: "previous",
-              clickHandler: updateError,
+              clickHandler: error.status ? updateError : null,
               errorStatus: false,
               pathTo: "/Filter/Water"
             },
             {
               label: "finish",
-              clickHandler: updateError,
+              clickHandler: pets.length > 0 ? fetchPlants : updateError,
               errorStatus: pets.length > 0 ? false : true,
-              pathTo: pets.length > 0 ? "/" : "#"
+              pathTo: pets.length > 0 ? "/Picks" : "#"
             }
           ]}
           setFilter={setPets}
@@ -194,7 +195,7 @@ const getFilterContainer = (
   }
 };
 
-const Filter = ({
+const FilterPage = ({
   location,
   sunlight,
   water,
@@ -203,7 +204,8 @@ const Filter = ({
   setSunlight,
   setWater,
   setPets,
-  updateError
+  updateError,
+  fetchPlants
 }) => {
   return (
     <div className="container background-grey">
@@ -221,11 +223,12 @@ const Filter = ({
           setSunlight,
           setWater,
           setPets,
-          updateError
+          updateError,
+          fetchPlants
         )}
       </div>
     </div>
   );
 };
 
-export default Filter;
+export default FilterPage;

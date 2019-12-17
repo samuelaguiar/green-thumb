@@ -1,0 +1,166 @@
+@import "../../styles/colours.scss";
+
+.purchase-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .plant-info {
+    max-width: 380px;
+
+    h1 {
+      font-weight: 700;
+      font-size: 50px;
+      margin: 0;
+    }
+
+    h3 {
+      font-weight: 300;
+      font-size: 24px;
+      color: $price;
+      margin: 0 0 25px;
+    }
+
+    img {
+      max-height: 200px;
+    }
+
+    .plant-options {
+      display: flex;
+      flex-direction: column;
+
+      .option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+
+        svg {
+          // max-width: 28px;
+          width: 28px;
+          max-height: 23px;
+          height: auto;
+        }
+
+        span {
+          font-weight: 300;
+          font-size: 16px;
+          color: $body-text;
+          margin-left: 15px;
+        }
+      }
+
+      .option:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $grey-background;
+    max-width: 284px;
+    min-width: 284px;
+    min-height: 400px;
+    padding: 40px 48px 30px;
+
+    h2 {
+      font-weight: 700;
+      font-size: 40px;
+      margin: 0 0 23px;
+    }
+
+    span {
+      font-weight: 300;
+      font-size: 16px;
+      color: $form-text-label;
+      line-height: 29px;
+    }
+
+    img {
+      margin: 30px 0 20px;
+      max-width: 204px;
+    }
+
+    form {
+      width: 100%;
+      margin-top: 30px;
+
+      .input-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 26px;
+
+        label {
+          font-weight: 600;
+          color: $form-text-label;
+          margin-bottom: 10px;
+        }
+
+        label.active {
+          color: $form-text-active;
+        }
+
+        input {
+          border-width: 1px;
+          border-style: solid;
+          border-color: $white;
+          padding: 14px 24px;
+          border-radius: 30px;
+          outline: none;
+          font-size: 14px;
+          font-weight: 300;
+          color: $form-text-active;
+          transition: all 100ms ease;
+        }
+
+        input:focus {
+          box-shadow: 0 10px 28px $grey-shadow;
+        }
+
+        input::placeholder {
+          color: $form-text-placeholder;
+        }
+
+        .error-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          span {
+            color: $invalid;
+            font-size: 12px;
+            font-weight: 300;
+            margin-left: 6px;
+          }
+        }
+
+        .error-container.hidden {
+          display: none;
+        }
+      }
+
+      .input-group.invalid label {
+        color: $invalid;
+      }
+
+      .input-group.invalid input {
+        border-color: $invalid;
+        color: $invalid;
+      }
+
+      .input-group:last-child {
+        margin-bottom: 30px;
+      }
+    }
+
+    button {
+      align-self: flex-end;
+    }
+  }
+}
