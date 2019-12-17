@@ -24,16 +24,19 @@ import Water from "../../assets/illustrations/wateringcan.png";
 const sunlightFilterOptions = [
   {
     text: "High sunlight",
+    value: "high",
     icon: HighSunlight,
     iconActive: HighSunlightActive
   },
   {
     text: "Low sunlight",
+    value: "low",
     icon: LowSunlight,
     iconActive: LowSunlightActive
   },
   {
     text: "No sunlight",
+    value: "no",
     icon: NoAnswer,
     iconActive: NoAnswerActive
   }
@@ -42,16 +45,19 @@ const sunlightFilterOptions = [
 const waterFilterOptions = [
   {
     text: "Rarely",
+    value: "rarely",
     icon: OneDrop,
     iconActive: OneDropActive
   },
   {
     text: "Regularly",
+    value: "regularly",
     icon: TwoDrops,
     iconActive: TwoDropsActive
   },
   {
     text: "Daily",
+    value: "daily",
     icon: ThreeDrops,
     iconActive: ThreeDropsActive
   }
@@ -60,11 +66,13 @@ const waterFilterOptions = [
 const petsFilterOptions = [
   {
     text: "Yes",
+    value: "true",
     icon: Pet,
     iconActive: PetActive
   },
   {
     text: "No/They don't care",
+    value: "false",
     icon: NoAnswer,
     iconActive: NoAnswerActive
   }
@@ -72,7 +80,17 @@ const petsFilterOptions = [
 
 const getPath = fullPath => fullPath.split("/")[2].toUpperCase();
 
-const getFilterContainer = path => {
+const getFilterContainer = (
+  path,
+  error,
+  sunlight,
+  water,
+  pets,
+  setSunlight,
+  setWater,
+  setPets,
+  updateError
+) => {
   switch (path) {
     case SUNLIGHT:
       return (
@@ -87,9 +105,22 @@ const getFilterContainer = path => {
           }
           theme={"coral"}
           btns={[
-            { label: "home", pathTo: "/" },
-            { label: "next", pathTo: "/Filter/Water" }
+            {
+              label: "home",
+              clickHandler: updateError,
+              errorStatus: false,
+              pathTo: "/"
+            },
+            {
+              label: "next",
+              clickHandler: updateError,
+              errorStatus: sunlight.length > 0 ? false : true,
+              pathTo: sunlight.length > 0 ? "/Filter/Water" : "#"
+            }
           ]}
+          setFilter={setSunlight}
+          typeValue={sunlight}
+          error={error.text}
         ></FilterContainer>
       );
     case WATER:
@@ -104,9 +135,22 @@ const getFilterContainer = path => {
           }
           theme={"green"}
           btns={[
-            { label: "previous", pathTo: "/Filter/Sunlight" },
-            { label: "next", pathTo: "/Filter/Pets" }
+            {
+              label: "previous",
+              clickHandler: updateError,
+              errorStatus: false,
+              pathTo: "/Filter/Sunlight"
+            },
+            {
+              label: "next",
+              clickHandler: updateError,
+              errorStatus: water.length > 0 ? false : true,
+              pathTo: water.length > 0 ? "/Filter/Pets" : "#"
+            }
           ]}
+          setFilter={setWater}
+          typeValue={water}
+          error={error.text}
         ></FilterContainer>
       );
     case PETS:
@@ -127,9 +171,22 @@ const getFilterContainer = path => {
           }
           theme={"coral"}
           btns={[
-            { label: "previous", pathTo: "/Filter/Water" },
-            { label: "finish", pathTo: "/" }
+            {
+              label: "previous",
+              clickHandler: updateError,
+              errorStatus: false,
+              pathTo: "/Filter/Water"
+            },
+            {
+              label: "finish",
+              clickHandler: updateError,
+              errorStatus: pets.length > 0 ? false : true,
+              pathTo: pets.length > 0 ? "/" : "#"
+            }
           ]}
+          setFilter={setPets}
+          typeValue={pets}
+          error={error.text}
         ></FilterContainer>
       );
     default:
@@ -137,7 +194,17 @@ const getFilterContainer = path => {
   }
 };
 
-const Filter = ({ location }) => {
+const Filter = ({
+  location,
+  sunlight,
+  water,
+  pets,
+  error,
+  setSunlight,
+  setWater,
+  setPets,
+  updateError
+}) => {
   return (
     <div className="container background-grey">
       <div className="logo-bar">
@@ -145,7 +212,17 @@ const Filter = ({ location }) => {
         <div className="green-line"></div>
       </div>
       <div className="container-inside">
-        {getFilterContainer(getPath(location.pathname))}
+        {getFilterContainer(
+          getPath(location.pathname),
+          error,
+          sunlight,
+          water,
+          pets,
+          setSunlight,
+          setWater,
+          setPets,
+          updateError
+        )}
       </div>
     </div>
   );

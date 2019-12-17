@@ -32,9 +32,16 @@
     .line {
       display: flex;
     }
+
     .btns {
       justify-content: space-between;
       margin-top: 47px;
+    }
+
+    .error {
+      margin-top: 30px;
+      margin-bottom: -10px;
+      color: $invalid;
     }
   }
 }

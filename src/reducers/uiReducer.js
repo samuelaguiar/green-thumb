@@ -2,6 +2,7 @@ import {
   SET_PETS,
   SET_SUNLIGHT,
   SET_WATER,
+  UPDATE_ERROR,
   UPDATE_FETCH_STATUS
 } from "../constants/ui";
 
@@ -13,6 +14,10 @@ const initialState = {
     contact: {},
     plant: {},
     plants: {}
+  },
+  error: {
+    status: false,
+    text: ""
   }
 };
 
@@ -32,6 +37,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         pets: action.payload.value
+      };
+    case UPDATE_ERROR:
+      return {
+        ...state,
+        error: {
+          status: action.payload.status,
+          text: action.payload.text
+        }
       };
     case UPDATE_FETCH_STATUS:
       return {

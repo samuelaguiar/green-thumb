@@ -19,7 +19,17 @@ class Button extends Component {
   };
 
   render() {
-    const { label, outline, arrow, transition, width, weight } = this.props;
+    const {
+      label,
+      outline,
+      arrow,
+      transition,
+      width,
+      weight,
+      clickHandler,
+      errorStatus,
+      errorText
+    } = this.props;
     return (
       <button
         className={`btn${outline ? " outline" : " solid"}${
@@ -28,6 +38,9 @@ class Button extends Component {
         style={{ width: width ? width : "", fontWeight: weight ? weight : "" }}
         onMouseEnter={this.setHover}
         onMouseLeave={this.unsetHover}
+        onClick={() =>
+          clickHandler ? clickHandler(errorStatus, errorText) : null
+        }
       >
         {arrow ? (
           !outline || this.state.hover ? (

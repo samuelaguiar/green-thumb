@@ -18,14 +18,28 @@ class CardFilter extends Component {
   };
 
   render() {
-    const { Icon, IconActive, text, theme } = this.props;
+    const {
+      Icon,
+      IconActive,
+      text,
+      theme,
+      setFilter,
+      typeValue,
+      value
+    } = this.props;
     return (
       <CardContainer
-        classes={`card-filter ${theme}`}
+        classes={`card-filter ${theme} ${typeValue === value ? "active" : ""}`}
         mouseEnter={this.setHover}
         mouseLeave={this.unsetHover}
+        clickHandler={setFilter}
+        value={value}
       >
-        {this.state.hover ? <IconActive></IconActive> : <Icon></Icon>}
+        {this.state.hover || typeValue === value ? (
+          <IconActive></IconActive>
+        ) : (
+          <Icon></Icon>
+        )}
         <span>{text}</span>
       </CardContainer>
     );

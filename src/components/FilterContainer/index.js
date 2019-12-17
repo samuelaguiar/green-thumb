@@ -5,13 +5,18 @@ import CardFilter from "../CardFilter";
 import { Link } from "react-router-dom";
 import React from "react";
 
+const errorText = "Select at least one option";
+
 const FilterContainer = ({
   picture,
   title,
   subtitle,
   options,
   theme,
-  btns
+  btns,
+  setFilter,
+  typeValue,
+  error
 }) => {
   return (
     <div className="filter-container">
@@ -31,10 +36,14 @@ const FilterContainer = ({
               Icon={option.icon}
               IconActive={option.iconActive}
               theme={theme}
-              key={option.text}
+              key={option.value}
+              value={option.value}
+              setFilter={setFilter}
+              typeValue={typeValue}
             ></CardFilter>
           ))}
         </div>
+        {error ? <div className="line error">*{error}</div> : null}
         <div className="line btns">
           {btns.map((btn, i) => (
             <Link to={btn.pathTo} key={i}>
@@ -44,6 +53,9 @@ const FilterContainer = ({
                 arrow={i === 0 ? "left" : "right"}
                 transition
                 width={"146px"}
+                clickHandler={btn.clickHandler}
+                errorStatus={btn.errorStatus}
+                errorText={btn.errorStatus ? errorText : ""}
               ></Button>
             </Link>
           ))}
