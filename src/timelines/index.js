@@ -22,6 +22,8 @@ const getTimeline = (node, home, results, foward) => {
 };
 
 export const play = (pathname, node) => {
+  console.log("i got here");
+
   const home = pathname === "/" ? true : false,
     results = pathname === "/Picks" || pathname === "/Purchase" ? true : false,
     foward = getFoward(store.getState()),
