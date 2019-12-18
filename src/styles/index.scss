@@ -4,7 +4,6 @@ body {
   font-family: "Montserrat", sans-serif;
   user-select: none;
   margin: 0;
-  // font-family: "Open Sans", sans-serif;
 }
 
 .container {
@@ -14,7 +13,6 @@ body {
   justify-content: center;
 
   .logo-bar {
-    // background-color: red;
     width: 25px;
     height: 80%;
     position: absolute;
@@ -43,4 +41,36 @@ body {
 
 .background-grey {
   background: $white-background;
+}
+
+@media only screen and (max-width: 1280px) {
+  .container {
+    .logo-bar {
+      height: 25px;
+      position: absolute;
+      left: 50%;
+      top: 24px;
+      transform: rotate(90deg);
+
+      svg {
+        transform: translate(0, calc(-50% + 12.5px));
+      }
+    }
+
+    .green-line {
+      display: none;
+    }
+
+    .container-inside {
+      margin: calc(5% + 50px) 0 0 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    .container-inside {
+      margin: calc(5% + 50px) 5% 0 5%;
+    }
+  }
 }

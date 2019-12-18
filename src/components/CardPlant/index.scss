@@ -5,11 +5,12 @@
   width: 100%;
   min-height: 302px;
   padding: 20px 30px;
+  flex-direction: column;
   justify-content: space-evenly;
   font-weight: 300;
   font-size: 18px;
   transition: all 150ms ease;
-  margin-bottom: 53px;
+  margin: 0 10px 53px 10px;
 
   .plant-pic {
     max-height: 170px;
@@ -46,4 +47,10 @@
 .card-plant:hover {
   box-shadow: 0px 28px 38px $grey-shadow;
   z-index: 1;
+}
+
+@media only screen and (max-width: 800px) {
+  .card-plant {
+    margin: 0 30px 30px 30px;
+  }
 }

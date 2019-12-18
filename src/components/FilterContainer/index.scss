@@ -31,6 +31,7 @@
 
     .line {
       display: flex;
+      flex-wrap: wrap;
     }
 
     .btns {
@@ -42,6 +43,61 @@
       margin-top: 30px;
       margin-bottom: -10px;
       color: $invalid;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .filter-container {
+    img {
+      max-width: 96px;
+      max-height: 96px;
+    }
+
+    .filter-info {
+      margin: 4% 0 8% 0;
+
+      h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .filter-options {
+      width: 80%;
+
+      .line {
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .filter-container {
+    .filter-info {
+      h2 {
+        font-size: 22px;
+      }
+    }
+
+    .filter-options {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .filter-container {
+    .filter-options {
+      .btns {
+        flex-direction: column-reverse;
+        align-items: center;
+
+        button {
+          margin-bottom: 30px;
+        }
+      }
     }
   }
 }

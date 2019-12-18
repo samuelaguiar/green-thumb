@@ -37,7 +37,6 @@
         margin-bottom: 25px;
 
         svg {
-          // max-width: 28px;
           width: 28px;
           max-height: 23px;
           height: auto;
@@ -181,4 +180,58 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+@media only screen and (max-width: 1280px) {
+  .purchase-container {
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .purchase-container {
+    flex-direction: column;
+
+    .plant-info {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 5%;
+
+      h1 {
+        font-size: 45px;
+      }
+    }
+
+    .contact-form {
+      width: 100%;
+      max-width: 100%;
+      padding: 5%;
+
+      h2 {
+        font-size: 35px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .purchase-container {
+    .plant-info {
+      margin-bottom: 10%;
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    .contact-form {
+      h2 {
+        font-size: 30px;
+      }
+
+      img {
+        max-height: 200px;
+      }
+    }
+  }
 }

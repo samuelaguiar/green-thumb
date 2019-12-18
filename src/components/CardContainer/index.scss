@@ -3,7 +3,14 @@
 .card {
   background: $card-background;
   display: flex;
-  flex-direction: column;
   border-radius: 5px;
   align-items: center;
+}
+
+@media only screen and (max-width: 722px) {
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
