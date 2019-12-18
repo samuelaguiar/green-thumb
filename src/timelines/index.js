@@ -13,7 +13,7 @@ const getTimeline = (node, home, results, foward) => {
     : node.querySelector(".container-inside");
 
   timeline.from(containerInside, 0.25, {
-    autoAlpha: 0,
+    opacity: 0,
     ease: Power1.easeIn,
     x: results ? 0 : foward ? 25 : -25
   });
@@ -37,12 +37,12 @@ export const playError = (node, enter) => {
 
   enter
     ? timeline.from(node, 0.1, {
-        autoAlpha: 0,
+        opacity: 0,
         ease: Power1.easeIn,
         y: -5
       })
     : timeline.to(node, 0.1, {
-        autoAlpha: 0,
+        opacity: 0,
         ease: Power1.easeIn,
         y: -5
       });
@@ -54,7 +54,7 @@ export const playVertical = node => {
   const timeline = new TimelineMax({ paused: true });
 
   timeline.from(node, 0.25, {
-    autoAlpha: 0,
+    opacity: 0,
     ease: Power1.easeIn,
     y: 5
   });
