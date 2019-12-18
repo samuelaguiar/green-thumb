@@ -1,10 +1,10 @@
-import { Power1, TimelineMax as Timeline } from "gsap";
+import { Power1, TimelineMax } from "gsap/all";
 
 import { getFoward } from "../selector";
 import store from "../store";
 
 const getTimeline = (node, home, results, foward) => {
-  const timeline = new Timeline({ paused: true });
+  const timeline = new TimelineMax({ paused: true });
   if (node === null) {
     return timeline;
   }
@@ -33,7 +33,7 @@ export const play = (pathname, node) => {
 };
 
 export const playError = (node, enter) => {
-  const timeline = new Timeline({ paused: true });
+  const timeline = new TimelineMax({ paused: true });
 
   enter
     ? timeline.from(node, 0.1, {
@@ -51,7 +51,7 @@ export const playError = (node, enter) => {
 };
 
 export const playVertical = node => {
-  const timeline = new Timeline({ paused: true });
+  const timeline = new TimelineMax({ paused: true });
 
   timeline.from(node, 0.25, {
     autoAlpha: 0,
