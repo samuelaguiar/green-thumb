@@ -25,6 +25,7 @@ const fetchPlantsAux = dispatch => {
 };
 
 const mapDispachToProps = dispatch => ({
+  setFoward: isFoward => dispatch(actionUI.setFoward(isFoward)),
   setSunlight: value => handleSetFilter(dispatch, actionUI.setSunlight, value),
   setWater: value => handleSetFilter(dispatch, actionUI.setWater, value),
   setPets: value => handleSetFilter(dispatch, actionUI.setPets, value),

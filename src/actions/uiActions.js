@@ -1,5 +1,7 @@
 import {
+  RESET_CONTACT,
   RESET_FILTERS,
+  SET_FOWARD,
   SET_PETS,
   SET_SUNLIGHT,
   SET_WATER,
@@ -9,6 +11,11 @@ import {
 } from "../constants/ui";
 
 export const startApp = () => ({ type: START_APP });
+
+export const setFoward = isFoward => ({
+  type: SET_FOWARD,
+  payload: { isFoward }
+});
 
 export const setSunlight = value => ({
   type: SET_SUNLIGHT,
@@ -36,3 +43,5 @@ export const updateFetchStatus = (type, status) => ({
 });
 
 export const resetFilters = () => ({ type: RESET_FILTERS });
+
+export const resetContact = () => ({ type: RESET_CONTACT });

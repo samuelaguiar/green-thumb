@@ -1,5 +1,7 @@
 import "./index.scss";
 
+import { Transition, TransitionGroup } from "react-transition-group";
+
 import CardPlant from "../CardPlant";
 import Error from "../Error";
 import { ReactComponent as HighSunlight } from "../../assets/icons/grey/high-sun.svg";
@@ -13,6 +15,7 @@ import React from "react";
 import { ReactComponent as ThreeDrops } from "../../assets/icons/grey/three-drops.svg";
 import { ReactComponent as Toxic } from "../../assets/icons/grey/toxic.svg";
 import { ReactComponent as TwoDrops } from "../../assets/icons/grey/two-drops.svg";
+import { playVertical } from "../../timelines";
 
 const plantOptionsArray = (sun, water, toxicity) => {
   const array = [];
@@ -64,42 +67,48 @@ const PlantListPage = ({ plants, fetchStatus, fetchPlant, resetFilters }) => {
         <div className="green-line"></div>
       </div>
       <div className="container-inside">
-        {fetchStatus.status === 200 ? (
-          <div className="pick-container">
-            <img src={Pick} alt=""></img>
-            <h1>Our picks for you</h1>
-            <div className="list">
-              {plants.map(plant => (
-                <CardPlant
-                  key={plant.id}
-                  id={plant.id}
-                  src={plant.url}
-                  name={plant.name}
-                  price={plant.price}
-                  options={plantOptionsArray(
-                    plant.sun,
-                    plant.water,
-                    plant.toxicity
-                  )}
-                  fetchPlant={fetchPlant}
-                ></CardPlant>
-              ))}
-            </div>
-          </div>
-        ) : fetchStatus.status === 404 ? (
-          <Error
-            picUrl={Pick}
-            errorMessage={fetchStatus.error}
-            resetFilters={resetFilters}
-          ></Error>
-        ) : fetchStatus.status === 422 ? (
-          <Error
-            errorMessage={"Unfortunately, an error ocurred."}
-            resetFilters={resetFilters}
-          ></Error>
-        ) : (
-          <Loader></Loader>
-        )}
+        <TransitionGroup component={null}>
+          {fetchStatus.status === 200 ? (
+            <Transition onEnter={node => playVertical(node)} timeout={300}>
+              <div className="pick-container">
+                <img src={Pick} alt=""></img>
+                <h1>Our picks for you</h1>
+                <div className="list">
+                  {plants.map(plant => (
+                    <CardPlant
+                      key={plant.id}
+                      id={plant.id}
+                      src={plant.url}
+                      name={plant.name}
+                      price={plant.price}
+                      options={plantOptionsArray(
+                        plant.sun,
+                        plant.water,
+                        plant.toxicity
+                      )}
+                      fetchPlant={fetchPlant}
+                    ></CardPlant>
+                  ))}
+                </div>
+              </div>
+            </Transition>
+          ) : fetchStatus.status === 404 ? (
+            <Transition onEnter={node => playVertical(node)} timeout={300}>
+              <Error
+                picUrl={Pick}
+                errorMessage={fetchStatus.error}
+                resetFilters={resetFilters}
+              ></Error>
+            </Transition>
+          ) : fetchStatus.status === 422 ? (
+            <Error
+              errorMessage={"Unfortunately, an error ocurred."}
+              resetFilters={resetFilters}
+            ></Error>
+          ) : (
+            <Loader></Loader>
+          )}
+        </TransitionGroup>
       </div>
     </div>
   );

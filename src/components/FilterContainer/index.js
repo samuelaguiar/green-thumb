@@ -1,11 +1,24 @@
 import "./index.scss";
 
+import { Transition, TransitionGroup } from "react-transition-group";
+
 import Button from "../Button";
 import CardFilter from "../CardFilter";
 import { Link } from "react-router-dom";
 import React from "react";
+import { playError } from "../../timelines";
 
-const errorText = "Select at least one option";
+const filterButton = (btn, i) => (
+  <Button
+    label={btn.label}
+    outline
+    arrow={i === 0 ? "left" : "right"}
+    transition
+    width={"146px"}
+    clickHandler={btn.clickHandler}
+    key={i}
+  ></Button>
+);
 
 const FilterContainer = ({
   picture,
@@ -43,22 +56,27 @@ const FilterContainer = ({
             ></CardFilter>
           ))}
         </div>
-        {error ? <div className="line error">*{error}</div> : null}
+        <TransitionGroup component={null}>
+          {error && (
+            <Transition
+              onEnter={node => playError(node, true)}
+              onExit={node => playError(node, false)}
+              timeout={{ enter: 300, exit: 100 }}
+            >
+              <div className="line error">*{error}</div>
+            </Transition>
+          )}
+        </TransitionGroup>
         <div className="line btns">
-          {btns.map((btn, i) => (
-            <Link to={btn.pathTo} key={i}>
-              <Button
-                label={btn.label}
-                outline
-                arrow={i === 0 ? "left" : "right"}
-                transition
-                width={"146px"}
-                clickHandler={btn.clickHandler}
-                errorStatus={btn.errorStatus}
-                errorText={btn.errorStatus ? errorText : ""}
-              ></Button>
-            </Link>
-          ))}
+          {btns.map((btn, i) =>
+            btn.pathTo ? (
+              <Link to={btn.pathTo} key={i}>
+                {filterButton(btn, i)}
+              </Link>
+            ) : (
+              filterButton(btn, i)
+            )
+          )}
         </div>
       </div>
     </div>

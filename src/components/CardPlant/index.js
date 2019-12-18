@@ -26,8 +26,7 @@ const CardPlant = ({ id, src, name, price, options, fetchPlant }) => {
           outline
           transition
           width={"100%"}
-          clickHandler={fetchPlant}
-          plantId={id}
+          clickHandler={() => fetchPlant(id)}
         ></Button>
       </Link>
     </CardContainer>

@@ -4,6 +4,7 @@ const getUI = state => state.ui;
 const getData = state => state.data;
 
 export const getStarted = createSelector(getUI, ui => ui.started);
+export const getFoward = createSelector(getUI, ui => ui.foward);
 export const getSunlight = createSelector(getUI, ui => ui.sunlight);
 export const getWater = createSelector(getUI, ui => ui.water);
 export const getPets = createSelector(getUI, ui => ui.pets);

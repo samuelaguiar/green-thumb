@@ -80,12 +80,23 @@ const petsFilterOptions = [
 
 const getPath = fullPath => fullPath.split("/")[2].toUpperCase();
 
+// eslint-disable-next-line
+const goFoward = (setFoward, isFoward, clickHandler) => {
+  setFoward(isFoward);
+  if (clickHandler) {
+    clickHandler();
+  }
+};
+
+const errorText = "Select at least one option";
+
 const getFilterContainer = (
   path,
   error,
   sunlight,
   water,
   pets,
+  setFoward,
   setSunlight,
   setWater,
   setPets,
@@ -108,15 +119,21 @@ const getFilterContainer = (
           btns={[
             {
               label: "home",
-              clickHandler: error.status ? updateError : null,
-              errorStatus: false,
+              clickHandler: error.status
+                ? () => goFoward(setFoward, false, () => updateError(false, ""))
+                : () => goFoward(setFoward, false),
               pathTo: "/"
             },
             {
               label: "next",
-              clickHandler: sunlight.length > 0 ? null : updateError,
-              errorStatus: sunlight.length > 0 ? false : true,
-              pathTo: sunlight.length > 0 ? "/Filter/Water" : "#"
+              clickHandler:
+                sunlight.length > 0
+                  ? () => goFoward(setFoward, true)
+                  : () =>
+                      goFoward(setFoward, true, () =>
+                        updateError(true, errorText)
+                      ),
+              pathTo: sunlight.length > 0 ? "/Filter/Water" : null
             }
           ]}
           setFilter={setSunlight}
@@ -138,15 +155,21 @@ const getFilterContainer = (
           btns={[
             {
               label: "previous",
-              clickHandler: error.status ? updateError : null,
-              errorStatus: false,
+              clickHandler: error.status
+                ? () => goFoward(setFoward, false, () => updateError(false, ""))
+                : () => goFoward(setFoward, false),
               pathTo: "/Filter/Sunlight"
             },
             {
               label: "next",
-              clickHandler: water.length > 0 ? null : updateError,
-              errorStatus: water.length > 0 ? false : true,
-              pathTo: water.length > 0 ? "/Filter/Pets" : "#"
+              clickHandler:
+                water.length > 0
+                  ? () => goFoward(setFoward, true)
+                  : () =>
+                      goFoward(setFoward, true, () =>
+                        updateError(true, errorText)
+                      ),
+              pathTo: water.length > 0 ? "/Filter/Pets" : null
             }
           ]}
           setFilter={setWater}
@@ -174,15 +197,21 @@ const getFilterContainer = (
           btns={[
             {
               label: "previous",
-              clickHandler: error.status ? updateError : null,
-              errorStatus: false,
+              clickHandler: error.status
+                ? () => goFoward(setFoward, false, () => updateError(false, ""))
+                : () => goFoward(setFoward, false),
               pathTo: "/Filter/Water"
             },
             {
               label: "finish",
-              clickHandler: pets.length > 0 ? fetchPlants : updateError,
-              errorStatus: pets.length > 0 ? false : true,
-              pathTo: pets.length > 0 ? "/Picks" : "#"
+              clickHandler:
+                pets.length > 0
+                  ? () => goFoward(setFoward, true, fetchPlants)
+                  : () =>
+                      goFoward(setFoward, true, () =>
+                        updateError(true, errorText)
+                      ),
+              pathTo: pets.length > 0 ? "/Picks" : null
             }
           ]}
           setFilter={setPets}
@@ -201,6 +230,7 @@ const FilterPage = ({
   water,
   pets,
   error,
+  setFoward,
   setSunlight,
   setWater,
   setPets,
@@ -220,6 +250,7 @@ const FilterPage = ({
           sunlight,
           water,
           pets,
+          setFoward,
           setSunlight,
           setWater,
           setPets,

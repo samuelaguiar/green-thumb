@@ -5,3 +5,5 @@ export const SET_PETS = "SET_PETS";
 export const UPDATE_ERROR = "UPDATE_ERROR";
 export const UPDATE_FETCH_STATUS = "UPDATE_FETCH_STATUS";
 export const RESET_FILTERS = "RESET_FILTERS";
+export const RESET_CONTACT = "RESET_CONTACT";
+export const SET_FOWARD = "SET_FOWARD";

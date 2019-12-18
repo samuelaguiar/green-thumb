@@ -60,7 +60,6 @@
   .contact-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     background-color: $grey-background;
     max-width: 284px;
@@ -163,4 +162,23 @@
       align-self: flex-end;
     }
   }
+
+  .contact-form.center {
+    align-items: center;
+
+    span {
+      text-align: center;
+    }
+
+    button {
+      margin-top: 30px;
+      align-self: auto;
+    }
+  }
+}
+
+.align-container-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

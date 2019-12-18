@@ -1,9 +1,9 @@
 import { getFetchStatus, getPlant } from "../selector";
+import { resetContact, resetFilters } from "../actions/uiActions";
 
 import PurchasePage from "../components/PurchasePage";
 import { connect } from "react-redux";
 import { postContact } from "../actions/dataActions";
-import { resetFilters } from "../actions/uiActions";
 
 const mapStateToProps = state => ({
   plant: getPlant(state),
@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 
 const mapDispachToProps = dispatch => ({
   resetFilters: () => dispatch(resetFilters()),
+  resetContact: () => dispatch(resetContact()),
   postContact: (name, email, id) => dispatch(postContact(name, email, id))
 });
 

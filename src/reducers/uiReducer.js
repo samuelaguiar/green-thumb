@@ -1,5 +1,7 @@
 import {
+  RESET_CONTACT,
   RESET_FILTERS,
+  SET_FOWARD,
   SET_PETS,
   SET_SUNLIGHT,
   SET_WATER,
@@ -21,7 +23,8 @@ const initialState = {
   error: {
     status: false,
     text: ""
-  }
+  },
+  foward: true
 };
 
 export default function(state = initialState, action) {
@@ -30,6 +33,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         started: true
+      };
+    case SET_FOWARD:
+      return {
+        ...state,
+        foward: action.payload.isFoward
       };
     case SET_SUNLIGHT:
       return {
@@ -76,6 +84,14 @@ export default function(state = initialState, action) {
         error: {
           status: false,
           text: ""
+        }
+      };
+    case RESET_CONTACT:
+      return {
+        ...state,
+        fetchStatus: {
+          ...state.fetchStatus,
+          contact: { sent: false }
         }
       };
     default:

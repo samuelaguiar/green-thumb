@@ -1,16 +1,16 @@
 @import "../../styles/colours.scss";
 
 .container-home {
+  min-width: 80%;
   background-image: url(../../assets/illustrations/illustration-home.png);
   background-repeat: no-repeat;
-  background-position: 80% 100%;
+  background-position: 100% 100%;
   justify-content: flex-start;
 
   .container-inside-home {
     max-width: 440px;
     width: 100%;
-    min-height: 100%;
-    margin-left: 10%;
+    // margin-left: 10%;
 
     .logo {
       margin-top: 60px;
